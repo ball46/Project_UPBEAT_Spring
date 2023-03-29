@@ -7,5 +7,5 @@ import lombok.Data;
 public class EntryResponses {
     private String nameP1;
     private String nameP2;
-    private ConfigurationRequest configuration;;
+    private ConfigurationRequest configuration;
 }
