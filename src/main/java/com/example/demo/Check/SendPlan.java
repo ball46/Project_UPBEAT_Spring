@@ -5,6 +5,7 @@ import com.example.demo.Data.Request.SendPlanRequest;
 import com.example.demo.Service.ConstructionPlan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class SendPlan {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
-    @PostMapping("/sendPlan")
+    @MessageMapping("/sendPlan")
     public ResponseEntity<Game> sendPlan(@RequestBody SendPlanRequest sendPlanRequest) {
         try {
             if(sendPlanRequest.getPlan() == null || sendPlanRequest.getPlan().isEmpty()) {

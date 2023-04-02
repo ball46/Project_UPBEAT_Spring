@@ -6,6 +6,7 @@ import com.example.demo.Data.Request.CreateGameRequest;
 import com.example.demo.Interning.CreateNewGame;
 import com.example.demo.Service.ConstructionPlan;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/check")
 public class CreateGame {
 
-    @PostMapping("/createGame")
+    @MessageMapping("/createGame")
     public ResponseEntity<Game> createGame(@RequestBody CreateGameRequest createGameRequest){
         try{
             if(createGameRequest.getP1Name() == null || createGameRequest.getP2Name() == null){
