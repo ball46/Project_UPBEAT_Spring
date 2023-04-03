@@ -7,18 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Controller
 @RequestMapping("/check")
 public class SendPlan {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
-    @MessageMapping("/sendPlan")
+    @PostMapping("/sendPlan")
     public ResponseEntity<Game> sendPlan(@RequestBody SendPlanRequest sendPlanRequest) {
         try {
             if(sendPlanRequest.getPlan() == null || sendPlanRequest.getPlan().isEmpty()) {
@@ -26,6 +28,7 @@ public class SendPlan {
             }else if(sendPlanRequest.getName() == null){
                 throw new IllegalStateException("You must provide a name");
             }
+            System.out.println(sendPlanRequest.getPlan());
             Game game = ConstructionPlan.SendPlan(sendPlanRequest.getPlan(), sendPlanRequest.getName());
             simpMessagingTemplate.convertAndSend("/topic/updatePlan", game);
             return ResponseEntity.ok(game);

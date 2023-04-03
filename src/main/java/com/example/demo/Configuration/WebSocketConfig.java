@@ -19,7 +19,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/upbeat-game").setAllowedOriginPatterns("*")
-                .setHandshakeHandler(new SetPrincipal())
-                .withSockJS();
+                .setHandshakeHandler(new SetPrincipal());
+//                .withSockJS();
     }
 }

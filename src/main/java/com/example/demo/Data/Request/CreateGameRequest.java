@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CreateGameRequest {
-    private String P1Name;
-    private String P2Name;
+    private String P1Name = "ball";
+    private String P2Name = "boss";
     private ConfigurationRequest config;
 }

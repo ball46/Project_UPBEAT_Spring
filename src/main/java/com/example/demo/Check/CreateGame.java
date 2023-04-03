@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/check")
 public class CreateGame {
 
-    @MessageMapping("/createGame")
-    public ResponseEntity<Game> createGame(@RequestBody CreateGameRequest createGameRequest){
+    @PostMapping("/createGame")
+    public ResponseEntity<Object> createGame(@RequestBody CreateGameRequest createGameRequest){
         try{
             if(createGameRequest.getP1Name() == null || createGameRequest.getP2Name() == null){
                 throw new NullPointerException("Player names cannot be null");
